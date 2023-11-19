@@ -1,5 +1,9 @@
 #  The project focuses on deploying a 2-tier application on AWS with terraform, automating infrastructure provisioning and management, enhancing scalability and maintainability.
 
+
+![image](https://github.com/Cmieytee/TERRAFORM/assets/129941983/fa95f71e-9f80-4852-89d9-946459b8f353)
+
+
 STEP 1 - PROVIDER FILE
 
 The provider.tf file in Terraform serves as the directive for specifying the chosen cloud provider, such as AWS, Azure, Google Cloud, etc., to be utilized for infrastructure deployment. Think of it as selecting the right toolbox for a specific task.
@@ -67,3 +71,5 @@ Assumes the existence of two instances (aws_instance.two-tier-web-server-1 and a
 
 Creates a database subnet group, specifying available private subnets for RDS instances.
 Includes both private subnets established earlier.
+
+
