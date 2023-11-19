@@ -101,4 +101,4 @@ Initiates the Terraform configuration.
 ## terraform plan
 Generates an execution plan for the Terraform configuration
 ## terraform apply
-The command is employed to execute the Terraform configuration, initiating the creation or modification of resources within the specified AWS environment.
+Executes the Terraform configuration, initiating the creation or modification of resources within the specified AWS environment.
