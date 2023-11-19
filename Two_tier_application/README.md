@@ -105,3 +105,32 @@ Allows incoming traffic on port 22 (SSH) from a specific IP range within the VPC
 
 Enables all outgoing traffic to any destination (from_port = "0", to_port = "0", protocol = "-1").
 
+# step 4 - EC2 INSTANCE
+
+
+## Public Subnet EC2 Instance 1 (aws_instance.two-tier-web-server-1):
+   - Defines an EC2 instance named "two-tier-web-server-1" using the specified Amazon Machine Image (AMI) ID (ami-064eb0bee0c5402c5).
+   - Sets the instance type to t2.micro for a cost-effective, general-purpose configuration.
+   - Associates the instance with the previously defined security group (aws_security_group.two-tier-ec2-sg.id).
+   - Places the instance in the public subnet two-tier-pub-sub-1 using the subnet_id.
+   - Utilizes the "two-tier-key" key pair for SSH access.
+   - Adds tags for easy identification.
+
+   **User Data Script:**
+   - Includes a Bash script in the user_data section that:
+     - Updates system packages (sudo yum update -y).
+     - Installs NGINX (sudo amazon-linux-extras install nginx1 -y).
+     - Enables NGINX to start on boot (sudo systemctl enable nginx).
+     - Starts NGINX (sudo systemctl start nginx).
+
+## Public Subnet EC2 Instance 2 (aws_instance.two-tier-web-server-2):
+   - Similar to the first instance, defines a second EC2 instance named "two-tier-web-server-2" with identical configurations, but placed in the public subnet two-tier-pub-sub-2.
+
+## Elastic IPs (EIPs) for EC2 Instances:
+   - Allocates Elastic IPs (aws_eip) for each EC2 instance.
+   - Associates EIP 1 (aws_eip.two-tier-web-server-1-eip) with two-tier-web-server-1.id.
+   - Associates EIP 2 (aws_eip.two-tier-web-server-2-eip) with two-tier-web-server-2.id.
+   - These EIPs provide static public IP addresses to the EC2 instances, ensuring accessibility from the internet.
+
+Each step encompasses the creation and configuration of resources required for running EC2 instances in public subnets. The user data scripts initialize the instances, and the Elastic IPs secure static public IP addresses for consistent internet accessibility.
+
