@@ -72,4 +72,36 @@ Assumes the existence of two instances (aws_instance.two-tier-web-server-1 and a
 Creates a database subnet group, specifying available private subnets for RDS instances.
 Includes both private subnets established earlier.
 
+STEP 3 - SECURITY RESOURCE
+
+## Ingress Rules (Inbound Traffic):
+
+Permits all incoming traffic on all ports (from_port = "0", to_port = "0", protocol = "-1"). Note that this is generally not recommended for production and should be configured more restrictively.
+Allows incoming traffic on port 80 (HTTP) from any source (cidr_blocks = ["0.0.0.0/0"]).
+Allows incoming traffic on port 22 (SSH) from any source. It's essential to mention that this configuration is not recommended for production, and SSH access should ideally be confined to trusted IP addresses.
+## Egress Rules (Outbound Traffic):
+
+Enables all outgoing traffic to any destination (from_port = "0", to_port = "0", protocol = "-1").
+Security Group for Load Balancer (aws_security_group.two-tier-alb-sg):
+
+Defines a security group named "two-tier-alb-sg" associated with the same VPC as above (aws_vpc.two-tier-vpc.id). Dependencies are specified to ensure the VPC is created before this security group.
+
+## Ingress Rules (Inbound Traffic):
+
+Permits all incoming traffic on all ports from any source (from_port = "0", to_port = "0", protocol = "-1", cidr_blocks = ["0.0.0.0/0"]). This configuration is generally not recommended for production as it exposes the load balancer to all traffic.
+## Egress Rules (Outbound Traffic):
+
+Allows all outgoing traffic to any destination (from_port = "0", to_port = "0", protocol = "-1").
+## Security Group for Database Tier (aws_security_group.two-tier-db-sg):
+
+Defines a security group named "two-tier-db-sg" associated with the same VPC as above (aws_vpc.two-tier-vpc.id).
+
+## Ingress Rules (Inbound Traffic):
+
+Permits incoming traffic on port 3306 (MySQL) from any source (from_port = 3306, to_port = 3306, protocol = "tcp", cidr_blocks = ["0.0.0.0/0"]). It's important to note that allowing MySQL traffic from anywhere is generally not recommended for production, and restrictions to trusted sources should be implemented.
+Allows incoming traffic on port 22 (SSH) from a specific IP range within the VPC (from_port = 22, to_port = 22, protocol = "tcp", security_groups = [aws_security_group.two-tier-ec2-sg.id], cidr_blocks = ["10.0.0.0/16"]). This enhances security by restricting SSH access to a specific IP range within the VPC.
+
+## Egress Rules (Outbound Traffic):
+
+Enables all outgoing traffic to any destination (from_port = "0", to_port = "0", protocol = "-1").
 
