@@ -4,12 +4,12 @@
 ![image](https://github.com/Cmieytee/TERRAFORM/assets/129941983/fa95f71e-9f80-4852-89d9-946459b8f353)
 
 
-STEP 1 - PROVIDER FILE
+# STEP 1 - PROVIDER FILE
 
 The provider.tf file in Terraform serves as the directive for specifying the chosen cloud provider, such as AWS, Azure, Google Cloud, etc., to be utilized for infrastructure deployment. Think of it as selecting the right toolbox for a specific task.
 Within this file, you define the particulars necessary for Terraform to establish a connection with the designated cloud provider, including credentials and configuration settings. Essentially, it entails furnishing Terraform with the necessary access keys to proficiently manage and orchestrate resources within that cloud environment on your behalf.
 
-STEP 2 - NETWORK RESOURCE 
+# STEP 2 - NETWORK RESOURCE 
 
 ## VPC Creation (aws_vpc):
 
@@ -72,7 +72,7 @@ Assumes the existence of two instances (aws_instance.two-tier-web-server-1 and a
 Creates a database subnet group, specifying available private subnets for RDS instances.
 Includes both private subnets established earlier.
 
-STEP 3 - SECURITY RESOURCE
+# STEP 3 - SECURITY RESOURCE
 
 ## Ingress Rules (Inbound Traffic):
 
