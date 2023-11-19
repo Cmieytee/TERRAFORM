@@ -95,10 +95,10 @@ Enables all outgoing traffic to any destination (from_port = "0", to_port = "0",
 Each step encompasses the creation and configuration of resources required for running EC2 instances in public subnets. The user data scripts initialize the instances, and the Elastic IPs secure static public IP addresses for consistent internet accessibility.
 # STEP 4 - DATABASE RESOURCE
 A MySQL database instance using RDS (aws_db_instance) is specified with a range of configurations, as outlined in the Terraform documentation.
-# step 5 - DEPLOY 
+# STEP 5 - DEPLOY 
 ## terraform init
-To initial the terraform configuration
+Initiates the Terraform configuration.
 ## terraform plan
-To  create an execution plan for the Terraform configuration
+Generates an execution plan for the Terraform configuration
 ## terraform apply
 The command is employed to execute the Terraform configuration, initiating the creation or modification of resources within the specified AWS environment.
